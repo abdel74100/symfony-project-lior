@@ -8,10 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TestController
 {
-
-    /**
-     * @Route("/test/{age<\d+>?0}", name="test",methods="{GET",POST},host="localhost")
-     */
+    
+    #[Route("/test/{age<\d+>?0}",  name: 'test', host: 'localhost', methods: ['GET', 'POST'])]
 
      public function index(Request $request, int $age): Response
      {
