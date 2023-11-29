@@ -8,10 +8,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TestController
 {
-    
-    #[Route("/test/{age<\d+>?0}",  name: 'test', host: 'localhost', methods: ['GET', 'POST'])]
 
-     public function index(Request $request, int $age): Response
+
+     #[Route("/", name: 'index', host: 'localhost', methods: ['GET', 'POST'])]
+     public function index(Request $request): Response
+     {
+          return new Response("Vous etes sur l'index");
+     }
+
+    #[Route("/test/{age<\d+>?0}", name: 'test_localhost', host: 'localhost', methods: ['GET', 'POST'])]
+     public function test(Request $request, int $age): Response
      {
           return new Response("Vous avez $age ans");
      }

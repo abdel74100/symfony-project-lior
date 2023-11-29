@@ -2,20 +2,27 @@
 
 namespace App\Controller;
 
+use App\Taxes\Calculator;
 use Psr\Log\LoggerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
-class HelloController
+class  HelloController extends AbstractController
 {
-public function __construct(LoggerInterface $logger){
-    $this->logger = $logger;
-}
+    protected Calculator $calculator;
+    public function __construct(Calculator $calculator)
+
+    {
+        $this->calculator = $calculator;
+    }
+
     #[Route('/hello/{name<[a-zA-Z]+>?World}', name: 'hello', host: 'localhost', methods: ['GET', 'POST'])]
 
-    public function index(string $name): Response
+    public function hello(string $name ,LoggerInterface $logger): Response
     {
-        $this->logger->info('Saying hello to '.$name);
-        return new Response('Hello '.$name.'!');
+        $logger->info('Saying hello to '.$name);
+        $tva = $this->calculator->calcul(100);
+        return new Response('Hello '.$name.'!'.$tva);
     }
 }
