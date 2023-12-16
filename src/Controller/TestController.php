@@ -8,8 +8,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TestController
 {
-
-
      #[Route("/", name: 'index', host: 'localhost', methods: ['GET', 'POST'])]
      public function index(Request $request): Response
      {
