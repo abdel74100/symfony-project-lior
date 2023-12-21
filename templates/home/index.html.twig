@@ -3,6 +3,7 @@
 {% block title %}E - Commerce SF5!{% endblock %}
 
 {% block body %}
+
     <h1>Nos Produits</h1>
 <div class="row">
     {% for i in 1..3 %}
@@ -18,19 +19,28 @@
         </div>
     </div>
     {% endfor %}
-    <hr>
+    <hr class="hr mt-5" />
     <h2>Un service irreprochable</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident, quo!</p>
+</div>
     <div class="row">
-        <div class="col">
-            <div class="card bg-primary text-white text-center">
-                <div class="card-body">
-                    <i class="fas fa-truck fa-2x"></i>
-                    <p class="car-text">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, libero!
-                    </p>
-                </div>
-            </div>
-        </div>
+        {% include 'shared/_assurance.html.twig' with  {
+            'color' : 'bg-primary',
+            'icone' : 'fa-truck',
+            'text' : "Lorem ipsum dolor sit amet, consectetur asectetur asectetur adipisicing elit. Provident, quo!"
+        } %}
+
+        {% include 'shared/_assurance.html.twig' with  {
+            'color' : 'bg-success',
+            'icone' : 'fa-check',
+            'text' : "Lorem ipsum dolor sit amet, consectetur asectetur asectetur adipisicing elit. Provident, quo!"
+            } %}
+
+        {% include 'shared/_assurance.html.twig' with  {
+            'color' : 'bg-warning',
+            'icone' : 'fa-lock',
+            'text' : "Lorem ipsum dolor sit amet, consectetur asectetur asectetur adipisicing elit. Provident, quo!"
+        } %}
     </div>
+
 {% endblock %}
