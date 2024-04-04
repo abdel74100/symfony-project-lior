@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  symshop:
+    build: docker
+    ports:
+      - "9000:80"
+    volumes:
+      - ./docker/vhosts:/etc/apache2/sites-enabled
+      - .:/var/www
+    depends_on:
+      - db
+      - maildev
+    environment:
+      DATABASE_URL: "mysql://abdak:root@db:3306/symshop"
+      MAILER_DSN: smtp://maildev:25
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: symshop
+      MYSQL_USER: abdak
+      MYSQL_PASSWORD: root
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+
+  maildev:
+    image: maildev/maildev
+    ports:
+      - "1080:80" # Port for web interface
+      - "1025:25" # SMTP port
+
+volumes:
+  mysql_data:
