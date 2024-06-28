@@ -1,8 +1,8 @@
 # Variables
 DOCKER = docker
-DOCKER_COMPOSE = docker-compose
+DOCKER_COMPOSE = docker compose
 # Définir le nom du service ou conteneur Docker. Ici, nous utilisons le nom du conteneur.
-CONTAINER_NAME = cours-ecommerce_symshop_1
+CONTAINER_NAME = symfony-project-lior-symshop-1
 # Exécuter des commandes à l'intérieur du conteneur avec le répertoire de travail correct.
 EXEC = $(DOCKER) exec -w /var/www $(CONTAINER_NAME)
 PHP = $(EXEC) php

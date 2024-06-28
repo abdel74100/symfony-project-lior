@@ -12,7 +12,7 @@ services:
       - db
       - maildev
     environment:
-      DATABASE_URL: "mysql://abdak:root@db:3306/symshop"
+      DATABASE_URL: "mysql://abdak:root@mysql-db:3306/symshop" # Utilisation du hostname
       MAILER_DSN: smtp://maildev:25
 
   db:
@@ -25,13 +25,15 @@ services:
       MYSQL_PASSWORD: root
     volumes:
       - mysql_data:/var/lib/mysql
-
+    hostname: mysql-db # Définition du hostname
+    ports:
+      - "3306:3306" # Optionnel, mais pratique pour l'accès depuis l'extérieur
 
   maildev:
     image: maildev/maildev
     ports:
-      - "1080:80" # Port for web interface
-      - "1025:25" # SMTP port
+      - "1080:80" # Port pour l'interface web
+      - "1025:25" # Port SMTP
 
 volumes:
   mysql_data:
